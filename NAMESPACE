@@ -1,0 +1,3 @@
+export(lp, netflowpuw, brcutpuw,
+  sudoku, jigsudoku)
+useDynLib(lppuw)

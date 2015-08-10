@@ -1,0 +1,23 @@
+## Changelog
+
+## 20080707
+##  added weights to netflowpuw
+##
+## 20091108
+## netflowpuw changes discontinuity values of 0 to NA
+## for easier graphical display with image()
+##
+##
+## 20110330
+##
+## changed distance calculation to sum of the legs
+##
+## 20111226
+##
+## added NAMESPACE for compatibility with R >= 2.14.0
+##
+## 20130710
+##
+## Makevars.win changed for compatibility with the current Rtools toolset.
+
+

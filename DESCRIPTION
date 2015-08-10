@@ -1,0 +1,9 @@
+Package: lppuw
+Version: 1.0.2
+Title: LP based phase unwrapping
+Author: M.L. Peck
+Maintainer: M.L. Peck <mpeck1@ix.netcom.com>
+License: MIT; portions are GPL
+Requires: zernike, R (>= 2.14.0)
+Description: Linear programming based phase unwrappers
+Packaged: 2011-03-30 22:14:03 UTC; mike

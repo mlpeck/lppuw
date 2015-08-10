@@ -1,0 +1,8 @@
+ifeq "$(WIN)" "64"
+  PKG_CPPFLAGS += -DWIN32 -DINLINE=static -I"c:/rtools/local300/include"
+  PKG_LIBS += -L"c:/rtools/local300/lib/x64" -llpsolve55
+else
+  PKG_CPPFLAGS += -DWIN32 -DINLINE=static -I"c:/rtools/local300/include"
+  PKG_LIBS += -L"c:/rtools/local300/lib/i386" -llpsolve55
+endif
+
