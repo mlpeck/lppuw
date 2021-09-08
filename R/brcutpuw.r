@@ -8,10 +8,37 @@
 ##		 of 0.
 ##
 
-	
+#' Linear program based phase unwrapping
+#'
+#' `brcutpuw` implements a branch cut algorithm for phase unwrapping
+#'
+#' @details This package implements two distinct algorithms for two dimensional
+#'   phase unwrapping that can be set up and solved as general linear programs.
+#'   The linear programs are solved using the LP solver `CBC` from [COIN-OR](https://github.com/coin-or/Cbc)
+#'   using the interface provided by the package [rcbc](https://dirkschumacher.github.io/rcbc/index.html).
+#'
+#' @param phase matrix with phase map to be unwrapped (phases are in radians)
+#' @param pen penalty for making a branch cut from a residue to an edge (`brcutpuw` only)
+#' @param wts matrix of weights for cost function with same dimension as `phase` (`netflowpuw` only)
+#' @param details Return some details of the solution?
+#' @param trace Send some info from the LP solver to the console?
+#'
+#' @return The unwrapped wavefront in units of fringes.
+#'   If `details` is `TRUE` additional details of the solution
+#'   are returned in a named list with the first member
+#'   `puw` containing the unwrapped wavefront.
+#'
+#' @seealso There is a function with the same name `brcutpuw` in package [zernike].
+#'
+#' @describeIn brcutpuw Branch cut algorithm for phase unwrapping
+#'
+#' @section Note:
+#'   According to the documentation for `rcbc` different levels of detail
+#'   from the LP solver can be printed with trace levels up to 15,
+#'   however the same output seems to be returned for all values.
+#'   Setting `trace=0` will produce silent output, which may not
+#'   be advisable since these can take some time to run.
 brcutpuw <- function(phase, pen=0, details=FALSE, trace=1) {
-          
-  require(zernike)
           
   ## distance between points specified by their x,y coordinates.
           

@@ -1,6 +1,7 @@
 
 ## minimum cost network flow model for phase unwrapping
-	
+
+#' @describeIn brcutpuw Network flow algorithm for phase unwrapping
 netflowpuw <- function(phase, wts=NULL, details=FALSE, trace=1) {
   nr <- nrow(phase)
   nc <- ncol(phase)
