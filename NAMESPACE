@@ -1,3 +1,2 @@
-export(lp, netflowpuw, brcutpuw,
-  sudoku, jigsudoku)
-useDynLib(lppuw)
+export(netflowpuw, brcutpuw)
+
