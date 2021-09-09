@@ -3,7 +3,7 @@ Version: 0.9.0
 Title: Linear Program based Phase UnWrapping
 Author: M.L. Peck
 Maintainer: M.L. Peck <mpeck1@ix.netcom.com>
-License: MIT; portions are GPL
+License: MIT
 Requires: Matrix, zernike, rcbc, R (>= 3.6.3)
 Description: Two algorithms for linear programming based phase unwrappers
 Roxygen: list(markdown = TRUE)
