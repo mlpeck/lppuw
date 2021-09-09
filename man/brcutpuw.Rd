@@ -51,6 +51,16 @@ Setting \code{trace=0} will produce silent output, which may not
 be advisable since these can take some time to run.
 }
 
+\examples{
+  data("phasemaps", package="lppuw")
+  mtext(zernike::rmap(phi, plot=TRUE))
+  wf.bc <- brcutpuw(phi)
+  wf.nf <- netflowpuw(phi, mod)
+  zernike::plot.pupil(wf.nf, col=zernike::rygcb(400))
+  cat("Summary of the difference between the two unwrapped wavefronts:\n")
+  zernike::summary.pupil(wf.nf - wf.bc)
+
+}
 \seealso{
 There is a function with the same name \code{brcutpuw} in package \link{zernike}.
 }
