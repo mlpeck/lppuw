@@ -1,6 +1,6 @@
 # Introduction
 
-This is a completely revamped version of a package implementing two algorithms for two dimensional phase unwrapping that can be set up and solved as [linear programs](https://en.wikipedia.org/wiki/Linear_programming). The revisions were motivated both for reasons of speed and maintainability. The LP solver I previously used appears no longer to be in active development, while the one ([CBC](https://github.com/coin-or/Cbc))I chose for this version is well funded and supported by the [COIN-OR](https://www.coin-or.org/) project. In limited testing I found the new solver can be orders of magnitude faster than the previous one. The speed difference is especially noticeable in the problem solved by `netflowpuw`, which could previously take some minutes or even hours to execute.
+This is a completely revamped version of a package implementing two algorithms for two dimensional phase unwrapping that can be set up and solved as [linear programs](https://en.wikipedia.org/wiki/Linear_programming). The revisions were motivated both for reasons of speed and maintainability. The LP solver I previously used appears no longer to be in active development, while the one ([CBC](https://github.com/coin-or/Cbc)) I chose for this version is well funded and supported by the [COIN-OR](https://www.coin-or.org/) project. In limited testing I found the new solver can be orders of magnitude faster than the previous one. The speed difference is especially noticeable in the problem solved by `netflowpuw`, which could previously take some minutes or even hours to execute.
 
 # Installation
 
@@ -22,4 +22,8 @@ wf.nf <- netflowpuw(phi, wts=mod)
 The `wts` argument in `netflowpuw` is optional but in my experience using the modulation map in the cost function gives superior results to the default.
 
 There are sample phase and modulation maps in the data directory (data courtesy Vladimir Galogaza) which can be loaded with `data("phasemaps", package="lppuw")`. There is also a usage example that can be run with `example(brcutpuw, package="lppuw", ask=FALSE)`.
+
+In my package `zernike` `netflowpuw()` will be called in the phase unwrapping step of interferogram analysis if `puw_alg = "lp"` is set in the list of options returned by `psfit_options`. Package `zernike` has it's own function `brcutpuw()` that solves an approximation to the same problem as the identically named function in this package. At the moment which one gets called depends on which package was loaded last. The next release of `zernike` will let users choose which to call. Both the phase and modulation estimates are returned by any of the fringe analysis routines in the package, so it's always possible to try these algorithms on any wavefront returned by them.
+
+Also forthcoming will be a package "vignette" with a discussion of the methods and details of the mathematical models solved.
 
