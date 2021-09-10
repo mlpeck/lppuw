@@ -49,6 +49,10 @@ from the LP solver can be printed with trace levels up to 15,
 however the same output seems to be returned for all values.
 Setting \code{trace=0} will produce silent output, which may not
 be advisable since these can take some time to run.
+
+The value of trace doesn't matter when running in a Windows "GUI"
+console window or Rstudio because the CBC output isn't passed. If
+you want to see some output run in a terminal window instead.
 }
 
 \examples{
@@ -56,6 +60,7 @@ be advisable since these can take some time to run.
   mtext(zernike::rmap(phi, plot=TRUE))
   wf.bc <- brcutpuw(phi)
   wf.nf <- netflowpuw(phi, mod)
+  X11()
   zernike::plot.pupil(wf.nf, col=zernike::rygcb(400))
   cat("Summary of the difference between the two unwrapped wavefronts:\n")
   zernike::summary.pupil(wf.nf - wf.bc)
