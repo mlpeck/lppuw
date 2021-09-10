@@ -53,7 +53,11 @@ netflowpuw <- function(phase, wts=NULL, details=FALSE, trace=1) {
                             k2y1+2*ndx, k2y1+2*ndx+1,
                             k2y1+2*ndx+ndy, k2y1+2*ndx+ndy+1)
               )
-  mat <- Matrix::sparseMatrix(i=i_ind, j=j_ind, x=xvals, dims=c(nrow, ncol), giveCsparse=FALSE)
+  if (packageVersion("Matrix") >= "1.3.0") {
+    mat <- Matrix::sparseMatrix(i=i_ind, j=j_ind, x=xvals, dims=c(nrow, ncol), repr="T")
+  } else {
+    mat <- Matrix::sparseMatrix(i=i_ind, j=j_ind, x=xvals, dims=c(nrow, ncol), giveCsparse=FALSE)
+  }
   
   lpout <- rcbc::cbc_solve(obj=obj, mat=mat,
                            row_ub=charge,

@@ -157,7 +157,11 @@ brcutpuw <- function(phase, pen=0, details=FALSE, trace=1) {
     j_m <- rbind(t(j_mp), (ncm*ncp + ncp)+(1:ncm))
     j_m <- as.vector(j_m)
     j_ind <- c(j_p, j_m)
-    mat <- Matrix::sparseMatrix(i=i_ind, j=j_ind, dims=c(nrow, ncol), giveCsparse=FALSE)
+    if (packageVersion("Matrix") >= "1.3.0") {
+      mat <- Matrix::sparseMatrix(i=i_ind, j=j_ind, dims=c(nrow, ncol), repr="T")
+    } else {
+      mat <- Matrix::sparseMatrix(i=i_ind, j=j_ind, dims=c(nrow, ncol), giveCsparse=FALSE)
+    }
     lpout <- rcbc::cbc_solve(obj=obj, mat=mat,
                             row_lb = row_lb,
                             row_ub = row_lb,
