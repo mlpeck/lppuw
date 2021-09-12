@@ -11,7 +11,13 @@ netflowpuw <- function(phase, wts=NULL, details=FALSE, trace=1) {
   d2y <- dy[1:(nr-1),] - dy[2:nr,]
   ndx <- sum(!is.na(dx))
   ndy <- sum(!is.na(dy))
-          
+  charge <- -round((d2y+d2x)/(2*pi))
+            
+  if (sum(abs(charge), na.rm=TRUE) == 0) {
+    cat("Phase map is trivial to unwrap, so calling idiffpuw\n")
+    return(zernike::idiffpuw(phase, ucall=TRUE))
+  }
+  
   ## these weights are too simple, but this seems to work
   ## better than combining weights from each pixel that
   ## went into a given difference.
@@ -28,8 +34,6 @@ netflowpuw <- function(phase, wts=NULL, details=FALSE, trace=1) {
   }
   ## the optimal solution will cancel the map's charges
          
-  charge <- -round((d2y+d2x)/(2*pi))
-            
   kx <- dx
   kx[!is.na(kx)] <- 1:ndx
   ky <- dy
