@@ -58,10 +58,14 @@ you want to see some output run in a terminal window instead.
 \examples{
   data("phasemaps", package="lppuw")
   mtext(zernike::rmap(phi, plot=TRUE))
-  wf.bc <- brcutpuw(phi)
+  wf.bc <- lppuw::brcutpuw(phi)
+  X11()
+  zernike::plot.pupil(wf.bc, col=zernike::rygcb(400))
+  mtext("Unwrapped wavefront from branch cut algorithm")
   wf.nf <- netflowpuw(phi, mod)
   X11()
   zernike::plot.pupil(wf.nf, col=zernike::rygcb(400))
+  mtext("Unwrapped wavefront from network flow algorithm")
   cat("Summary of the difference between the two unwrapped wavefronts:\n")
   zernike::summary.pupil(wf.nf - wf.bc)
 

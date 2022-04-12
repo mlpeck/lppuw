@@ -7,4 +7,4 @@ License: MIT
 Requires: Matrix, zernike, rcbc, R (>= 3.6.3)
 Description: Two algorithms for linear programming based phase unwrappers
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2
